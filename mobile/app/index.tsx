@@ -1,0 +1,5 @@
+import { Link } from "expo-router";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+const routes = [["Discover markets","/search"],["Research","/research"],["Build a thesis","/thesis"],["Paper trade","/paper-trade"],["Portfolio","/portfolio"]] as const;
+export default function Home() { return <SafeAreaView style={s.page}><Text style={s.brand}>EZYVEST</Text><Text style={s.title}>Understand before you invest.</Text><Text style={s.copy}>Financial intelligence and simulated trading, designed for clear thinking.</Text><View style={s.cards}>{routes.map(([label, href]) => <Link key={href} href={href} style={s.card}>{label} →</Link>)}</View></SafeAreaView>; }
+const s=StyleSheet.create({page:{flex:1,padding:24,backgroundColor:"#08090b"},brand:{color:"#91f0c3",fontSize:12,fontWeight:"700",letterSpacing:2},title:{color:"white",fontSize:36,fontWeight:"700",marginTop:16},copy:{color:"#99a0aa",fontSize:16,lineHeight:24,marginTop:12},cards:{marginTop:32,gap:10},card:{backgroundColor:"#14171d",color:"white",padding:18,borderRadius:12,fontSize:16}});

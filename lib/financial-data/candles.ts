@@ -1,0 +1,3 @@
+import type { PricePoint } from "./types";
+export type NormalizedCandle = { timestamp:number; open:number; high:number; low:number; close:number; volume?:number };
+export function normalizeCandle(point:PricePoint):NormalizedCandle|null { const parsed=point.time.includes("T")?point.time:point.time.includes(" ")?point.time.replace(" ","T"):`${point.time}T00:00:00Z`;const timestamp=Date.parse(parsed);if(!Number.isFinite(timestamp)||![point.open,point.high,point.low,point.close].every(Number.isFinite))return null;return{timestamp:Math.floor(timestamp/1000),open:point.open,high:point.high,low:point.low,close:point.close,...(Number.isFinite(point.volume)?{volume:point.volume}:{})}; }
